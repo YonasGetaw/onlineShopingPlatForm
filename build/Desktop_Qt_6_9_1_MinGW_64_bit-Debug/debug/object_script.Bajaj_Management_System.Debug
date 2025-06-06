@@ -1,0 +1,12 @@
+debug/main.o
+debug/database.o
+debug/login_controller.o
+debug/admin_controller.o
+debug/driver_controller.o
+debug/police_controller.o
+debug/session_manager.o
+debug/helpers.o
+debug/moc_login_controller.o
+debug/moc_admin_controller.o
+debug/moc_driver_controller.o
+debug/moc_police_controller.o

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginController</class>
+ <widget class="QWidget" name="LoginController">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Bajaj Management System - Login</string>
+  </property>
+  <property name="styleSheet">
+   <string>background-color: #E6F0FA; /* Light blue background */
+QLabel { font-size: 14px; color: #003087; font-weight: bold; }
+QPushButton { background-color: #003087; color: white; border-radius: 5px; padding: 5px; }
+QPushButton:hover { background-color: #0052cc; }
+QLineEdit { border: 1px solid #003087; border-radius: 3px; padding: 3px; }
+QComboBox { border: 1px solid #003087; border-radius: 3px; padding: 3px; background-color: white; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Email:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="emailLineEdit"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Password:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="passwordLineEdit">
+     <property name="echoMode">
+      <enum>QLineEdit::EchoMode::Password</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Role:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="roleComboBox">
+     <item>
+      <property name="text">
+       <string>Admin</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Driver</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Traffic Police</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="loginButton">
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

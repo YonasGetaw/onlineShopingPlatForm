@@ -1,0 +1,127 @@
+-- 1. admin Table
+CREATE TABLE admin (
+    admin_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    age INT CHECK (age >= 18),
+    sex VARCHAR(10) CHECK (sex IN ('Male', 'Female')),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. driver Table
+CREATE TABLE driver (
+    driver_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    age INT CHECK (age >= 18),
+    sex VARCHAR(10) CHECK (sex IN ('Male', 'Female')),
+    license_number VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    password TEXT,
+    shift_status VARCHAR(20) CHECK (shift_status IN ('On Duty', 'Off Duty', 'Break')) DEFAULT 'Off Duty',
+    assigned_route_id INT REFERENCES route(route_id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3. traffic_police Table
+CREATE TABLE traffic_police (
+    police_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    badge_number VARCHAR(50) UNIQUE NOT NULL,
+    age INT CHECK (age >= 18),
+    sex VARCHAR(10) CHECK (sex IN ('Male', 'Female')),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. route Table
+CREATE TABLE route (
+    route_id SERIAL PRIMARY KEY,
+    start_point VARCHAR(100) NOT NULL,
+    end_point VARCHAR(100) NOT NULL,
+    distance_km DECIMAL(5,2),
+    performance_score INT DEFAULT 0
+);
+
+-- 5. bajaj Table
+CREATE TABLE bajaj (
+    bajaj_id SERIAL PRIMARY KEY,
+    plate_number VARCHAR(20) UNIQUE NOT NULL,
+    model VARCHAR(50),
+    status VARCHAR(20) CHECK (status IN ('Active', 'Inactive', 'Maintenance')) DEFAULT 'Active',
+    assigned_driver_id INT REFERENCES driver(driver_id),
+    assigned_route_id INT REFERENCES route(route_id)
+);
+
+-- 6. driver_issue Table
+CREATE TABLE driver_issue (
+    issue_id SERIAL PRIMARY KEY,
+    driver_id INT REFERENCES driver(driver_id),
+    issue_type VARCHAR(100),
+    description TEXT NOT NULL,
+    status VARCHAR(20) CHECK (status IN ('Pending', 'Resolved')) DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 7. violation_report Table
+CREATE TABLE violation_report (
+    report_id SERIAL PRIMARY KEY,
+    police_id INT REFERENCES traffic_police(police_id),
+    driver_id INT REFERENCES driver(driver_id),
+    bajaj_id INT REFERENCES bajaj(bajaj_id),
+    violation_type VARCHAR(100),
+    description TEXT,
+    evidence TEXT,
+    action_taken TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 8. violation_history Table
+CREATE TABLE violation_history (
+    history_id SERIAL PRIMARY KEY,
+    driver_id INT REFERENCES driver(driver_id),
+    bajaj_id INT REFERENCES bajaj(bajaj_id),
+    report_id INT REFERENCES violation_report(report_id),
+    violation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Sample Data
+INSERT INTO admin (full_name, age, sex, email, password)
+VALUES 
+('Alemu Teshome', 35, 'Male', 'admin@bajajcity.gov.et', 'admin123');
+
+INSERT INTO driver (full_name, age, sex, license_number, email, password, shift_status)
+VALUES 
+('Kebede Alemayehu', 28, 'Male', 'DR12345ET', 'kebede@bajaj.com', 'pass123', 'On Duty'),
+('Marta Bekele', 32, 'Female', 'DR54321ET', 'marta@bajaj.com', 'marta456', 'Off Duty');
+
+INSERT INTO traffic_police (full_name, badge_number, age, sex, email, password)
+VALUES 
+('Sisay Getachew', 'TP001', 40, 'Male', 'sisay@traffic.gov.et', 'tp@2025'),
+('Hanna Girma', 'TP002', 30, 'Female', 'hanna@traffic.gov.et', 'tp@123');
+
+INSERT INTO route (start_point, end_point, distance_km, performance_score)
+VALUES 
+('Mebrat Haile', 'Menafesha', 4.5, 80),
+('Tirunesh Clinic', 'Amanuel Church', 6.2, 92);
+
+INSERT INTO bajaj (plate_number, model, status, assigned_driver_id, assigned_route_id)
+VALUES 
+('DB12345A', 'TVS King', 'Active', 1, 1),
+('DB54321B', 'Bajaj RE', 'Active', 2, 2);
+
+INSERT INTO driver_issue (driver_id, issue_type, description)
+VALUES 
+(1, 'Mechanical Problem', 'Engine making strange noise'),
+(2, 'Roadblock', 'Construction near roundabout caused detour');
+
+INSERT INTO violation_report (police_id, driver_id, bajaj_id, violation_type, description, evidence, action_taken)
+VALUES 
+(1, 1, 1, 'Speeding', 'Driver exceeded speed limit near Menafesha', 'photo123.jpg', 'Warning issued'),
+(2, 2, 2, 'Illegal Parking', 'Bajaj parked in no-parking zone', 'video456.mp4', 'Report sent to admin');
+
+INSERT INTO violation_history (driver_id, bajaj_id, report_id)
+VALUES 
+(1, 1, 1),
+(2, 2, 2);

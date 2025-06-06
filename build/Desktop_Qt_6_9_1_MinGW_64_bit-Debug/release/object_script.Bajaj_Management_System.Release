@@ -1,0 +1,12 @@
+release/main.o
+release/database.o
+release/login_controller.o
+release/admin_controller.o
+release/driver_controller.o
+release/police_controller.o
+release/session_manager.o
+release/helpers.o
+release/moc_login_controller.o
+release/moc_admin_controller.o
+release/moc_driver_controller.o
+release/moc_police_controller.o

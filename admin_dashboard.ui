@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AdminController</class>
+ <widget class="QWidget" name="AdminController">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>926</width>
+    <height>642</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Admin Dashboard - Bajaj Management System</string>
+  </property>
+  <property name="styleSheet">
+   <string>background-color: #E6F0FA; /* Light blue background */
+QLabel { font-size: 14px; color: #003087; font-weight: bold; }
+QPushButton { background-color: #003087; color: white; border-radius: 5px; padding: 5px; }
+QPushButton:hover { background-color: #0052cc; }
+QLineEdit { border: 1px solid #003087; border-radius: 3px; padding: 3px; }
+QComboBox { border: 1px solid #003087; border-radius: 3px; padding: 3px; background-color: white; }
+QTableWidget { border: 1px solid #003087; background-color: white; }
+QTableWidget::item { padding: 5px; }
+QTableWidget QTableCornerButton::section { background-color: #003087; }
+QTableWidget QHeaderView::section { background-color: #003087; color: white; padding: 5px; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Admin Dashboard</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="searchLayout">
+     <item>
+      <widget class="QLabel" name="searchLabel">
+       <property name="text">
+        <string>Search By:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="searchComboBox">
+       <item>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Email</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>License Number</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="searchLineEdit">
+       <property name="placeholderText">
+        <string>Enter search term</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="searchButton">
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="sortLayout">
+     <item>
+      <widget class="QLabel" name="sortLabel">
+       <property name="text">
+        <string>Sort By:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="sortComboBox">
+       <item>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Email</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>License Number</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sortButton">
+       <property name="text">
+        <string>Sort</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="driverTable">
+     <property name="columnCount">
+      <number>4</number>
+     </property>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Full Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>License Number</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="addDriverLabel">
+     <property name="text">
+      <string>Add New Driver</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="driverNameLineEdit">
+     <property name="placeholderText">
+      <string>Driver Full Name</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="driverEmailLineEdit">
+     <property name="placeholderText">
+      <string>Driver Email</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="licenseLineEdit">
+     <property name="placeholderText">
+      <string>License Number</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="addDriverButton">
+     <property name="text">
+      <string>Add Driver</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
